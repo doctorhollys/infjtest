@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFJ 세부 유형 테스트</title>
+    <style>
+        @font-face {
+            font-family: 'MangoDdobak-B';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GowunBatang-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'GowunBatang-Regular', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+	    line-height: 2.2;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 40px 80px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'MangoDdobak-B', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .btn {
+            background-color: #8a2be2;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-family: 'GowunBatang-Regular', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #9932cc;
+        }
+        #question-container, #result-container {
+            display: none;
+        }
+        #question-number {
+            font-size: 18px;
+            color: #8a2be2;
+            margin-bottom: 40px;
+        }
+        #question-text {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        #result-type {
+            font-size: 24px;
+            color: #8a2be2;
+            margin-bottom: 30px;
+        }
+        #result-description {
+            font-size: 16px;
+            color: #333;
+            line-height: 2.2;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        #result-description b {
+            color: #8a2be2;
+            margin-top: 20px;
+            display: block;
+        }
+        #share-message {
+            color: #4caf50;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 40px;
+                margin: 10px auto;
+                width: 95%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+        }
+        @media (max-height: 800px) {
+            .content-wrapper {
+                padding: 10px 0;
+            }
+            .container {
+                padding: 20px 40px;
+            }
+        }
+.intro-text {
+    text-align: left;
+    white-space: pre-line;
+    line-height: 2.2;
+}
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="container">
+            <div id="start-container">
+    <h1>INFJ 세부 유형 테스트</h1>
+    <p class="intro-text">우리는 모두 깊은 바다와 같은 INFJ의 세계를 살아갑니다. 
+때론 현실의 파도에 휩쓸려 고민하고, 
+때론 이상의 달빛에 물들어 황홀경에 빠지지요. 
+이 테스트는 당신 안의 숨겨진 INFJ의 모습을 찾아가는 여정입니다. 
+질문 하나하나가 당신 마음속 깊은 곳을 살며시 두드릴 거예요. 
+때로는 공감이 되고, 때로는 가슴이 먹먹해질지도 모르죠. 
+하지만 걱정 마세요. 
+이 여정의 끝에서 당신은 더욱 선명한 자신을 만나게 될 테니까요. 
+자, 이제 당신만의 INFJ 세계로 떠나볼까요?</p>
+    <button class="btn" onclick="startTest()">테스트 시작</button>
+</div>
+            <div id="question-container">
+                <div id="question-number"></div>
+                <div id="question-text"></div>
+                <button class="btn" onclick="answerQuestion(0)"></button>
+                <button class="btn" onclick="answerQuestion(1)"></button>
+                <button class="btn" onclick="answerQuestion(2)"></button>
+            </div>
+            <div id="result-container">
+                <h1>당신의 INFJ 세부 유형은...</h1>
+                <div id="result-type"></div>
+                <div id="result-description"></div>
+                <button class="btn" onclick="restartTest()">다시 해보기</button>
+                <button class="btn" onclick="shareResult()">결과 공유하기</button>
+                <div id="share-message"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+ const questions = [
+    {
+        question: "친구가 어려운 고민을 털어놓았어요. 내일이 마감인 업무가 있지만, 어떻게 하시겠어요?",
+        answers: [
+            "업무를 미루더라도 친구의 이야기에 귀 기울인다.",
+            "짧게 위로하고 나중에 길게 이야기하자고 한다.",
+            "전화로 대화하며 동시에 업무를 진행한다."
+        ]
+    },
+    {
+        question: "회사에서 비윤리적인 관행을 발견했어요. 어떻게 행동하시겠어요?",
+        answers: [
+            "정의를 위해 즉시 문제를 제기하고 개선을 요구한다.",
+            "증거를 수집하며 신중히 대응 방법을 고민한다.",
+            "내부 고발의 결과를 걱정하며 침묵을 지킨다."
+        ]
+    },
+    {
+        question: "SNS에서 사회 문제에 대한 열띤 논쟁을 보았어요. 어떻게 참여하고 싶나요?",
+        answers: [
+            "양측의 입장을 이해하고 중립적 의견을 제시한다.",
+            "내 신념에 따라 논리적이고 열정적으로 의견을 펼친다.",
+            "논쟁을 지켜보며 개인적으로 깊이 고민한다."
+        ]
+    },
+    {
+        question: "반복되는 일상에 권태를 느껴요. 어떤 변화를 주고 싶나요?",
+        answers: [
+            "의미 있는 봉사활동을 시작해 삶의 가치를 찾는다.",
+            "새로운 창작 활동을 통해 내면을 표현한다.",
+            "잠시 일상을 벗어나 홀로 여행을 떠난다."
+        ]
+    },
+    {
+        question: "연인과 가치관의 차이로 갈등이 생겼어요. 어떻게 해결하고 싶나요?",
+        answers: [
+            "깊은 대화로 서로의 내면을 이해하려 노력한다.",
+            "상대방의 관점을 존중하며 타협점을 찾는다.",
+            "가치관의 차이를 인정하고 각자의 방식을 존중한다."
+        ]
+    },
+    {
+        question: "직장에서 팀 프로젝트를 맡게 되었어요. 어떤 역할을 맡고 싶나요?",
+        answers: [
+            "팀원들의 장점을 끌어내는 조력자 역할",
+            "큰 그림을 그리는 비전 제시자 역할",
+            "세부 계획을 완벽히 수립하는 전략가 역할"
+        ]
+    },
+    {
+        question: "번아웃이 와서 휴식이 필요해요. 어떤 방식으로 재충전하고 싶나요?",
+        answers: [
+            "혼자만의 시간을 가지며 내면을 돌아본다.",
+            "가까운 이들과 깊은 대화를 나누며 힐링한다.",
+            "자연 속에서 명상하며 평화를 찾는다."
+        ]
+    },
+    {
+        question: "괜찮은 연봉의 업무 제안을 받았지만 적성에 안 맞아요. 어떻게 결정하시겠어요?",
+        answers: [
+            "적성과 열정을 따라 현재 직장을 고수한다.",
+            "새로운 기회로 생각하고 도전해본다.",
+            "더 나은 조건의 다른 기회를 찾아본다."
+        ]
+    },
+    {
+        question: "소중한 친구가 우울증 증상을 보여요. 어떻게 도와주고 싶나요?",
+        answers: [
+            "깊은 공감과 지지를 보내며 함께 있어준다.",
+            "전문가의 도움을 받아보자고 조심스레 제안한다.",
+            "일상의 작은 즐거움을 찾는 활동을 함께한다."
+        ]
+    },
+    {
+        question: "타로점을 봤는데 좋지 않은 결과가 나왔어요. 어떻게 받아들이시겠어요?",
+        answers: [
+            "운명을 개척하겠다는 마음으로 더 열심히 산다.",
+            "점괘의 의미를 깊이 생각하며 자아성찰의 기회로 삼는다.",
+            "그저 재미로 여기고 일상에 크게 영향 받지 않는다."
+        ]
+    },
+    {
+        question: "가장 친한 친구가 내 약점을 밝히며 농담했어요. 기분이 좋지 않은데 어떡하죠?",
+        answers: [
+            "솔직하게 내 감정을 표현하고 대화로 풀어간다.",
+            "혼자 생각을 정리한 후 차분히 이야기한다.",
+            "친구의 의도를 긍정적으로 해석하려 노력한다."
+        ]
+    },
+    {
+        question: "노력한 프로젝트가 실패로 돌아갔어요. 어떻게 극복하고 싶나요?",
+        answers: [
+            "실패의 원인을 깊이 분석하고 교훈을 얻는다.",
+            "의미 있는 도전이었다고 자신을 위로한다.",
+            "새로운 프로젝트로 빠르게 전환하여 재도전한다."
+        ]
+    },
+    {
+        question: "갑자기 초능력이 생긴다면 어떤 능력을 갖고 싶나요?",
+        answers: [
+            "모든 사람의 마음을 읽고 치유할 수 있는 능력",
+            "미래를 보고 최선의 선택을 할 수 있는 능력",
+            "순간이동으로 세계 곳곳을 여행하는 능력"
+        ]
+    },
+    {
+        question: "지구 반대편으로 혼자 여행을 떠나게 되었어요. 무엇이 가장 기대되나요?",
+        answers: [
+            "다양한 문화와 사람들을 만나며 세계관을 넓히는 것",
+            "홀로 있는 시간을 통해 깊은 자아성찰을 하는 것",
+            "책에서만 보던 역사적 장소들을 직접 경험하는 것"
+        ]
+    },
+    {
+        question: "10년 후 미래의 나에게 한 마디를 전한다면 무엇을 말하고 싶나요?",
+        answers: [
+            "너의 이상과 꿈을 절대 잃지 마",
+            "타인의 기대에 얽매이지 말고 네 길을 가",
+            "지금 이 순간의 소중함을 잊지 마"
+        ]
+    },
+    {
+        question: "혼자 살면서 처음으로 반려동물을 키우려고 해요. 어떤 점을 가장 고민하시나요?",
+        answers: [
+            "동물과 교감하며 정서적 안정을 얻을 수 있을지",
+            "책임감 있게 끝까지 돌볼 수 있을지",
+            "혼자 있는 시간이 줄어들어 적응할 수 있을지"
+        ]
+    },
+    {
+        question: "오랜 꿈이었던 작은 카페를 열게 되었어요. 어떤 콘셉트로 만들고 싶나요?",
+        answers: [
+            "방문객들이 깊은 대화를 나눌 수 있는 소통의 공간",
+            "책과 음악이 있는 문화예술의 아지트",
+            "쓰레기 없는 삶을 실천하는 친환경 카페"
+        ]
+    },
+    {
+        question: "인생의 전환점에서 중요한 결정을 내려야 해요. 어떤 기준으로 선택하시겠어요?",
+        answers: [
+            "나의 가치관과 신념에 얼마나 부합하는지",
+            "직관적으로 느껴지는 끌림과 확신",
+            "현실적인 이점과 잠재적 위험 분석"
+        ]
+    },
+    {
+        question: "가장 친한 친구가 우울한 시기를 겪고 있어요. 어떻게 도와주고 싶나요?",
+        answers: [
+            "그저 곁에 있어주며 무조건적인 지지를 보낸다",
+            "함께 새로운 취미나 활동을 시작하며 활력을 찾는다",
+            "전문가의 도움을 받아보자고 조심스럽게 제안한다"
+        ]
+    },
+    {
+        question: "지속 가능한 미래를 위해 일상에서 실천하고 싶은 활동이 있다면?",
+        answers: [
+            "쓰레기 없는 삶 스타일 도전하기",
+            "지역 농산물과 윤리적 소비에 동참하기",
+            "환경 관련 시민 단체에서 적극적으로 활동하기"
+        ]
+    }
+];
+
+const types = {
+    A: "섬세한 공감 통찰가 (Empathetic Insight Type)",
+    B: "이상적 가치 실현가 (Idealistic Actualization Type)",
+    C: "내면의 지혜 탐구가 (Introspective Exploration Type)"
+};
+
+    const typeDescriptions = {
+    A: `<b>일상의 단면 - 감정의 안테나를 지닌 공감의 달인</b><br>
+여러분의 하루는 마치 감정의 오케스트라를 지휘하는 것과 같습니다. 아침에 일어나 가족의 표정만 봐도 그들의 기분을 읽어내고, 출근길에 스쳐 지나간 이웃의 한숨에서 그의 고민을 감지합니다. 직장에서는 동료의 미묘한 표정 변화를 놓치지 않고, 때로는 그들이 말하지 않은 속마음까지 이해하곤 하죠. 점심 시간, 친구와의 대화에서는 그의 말 속에 숨겨진 진짜 감정을 발견하고 조심스레 위로의 말을 건넵니다. 퇴근 후 길에서 우연히 만난 노숙자의 이야기에 귀 기울이며, 그의 인생 여정에 깊은 공감을 표현하기도 합니다. 잠들기 전, 하루 동안 만난 모든 이들의 감정을 되새기며, 그들을 위해 할 수 있는 일을 고민하다 잠이 듭니다. 여러분의 일상은 이처럼 타인의 감정을 섬세하게 읽고 깊이 있게 이해하는 순간들로 가득 차 있습니다.<br><br>
+
+<b>유형 특성 - 공감의 마법사, 관계의 연금술사</b><br>
+여러분은 마치 타인의 감정을 읽는 특별한 안테나를 가진 것 같은 놀라운 공감 능력의 소유자입니다. 이는 단순히 남의 말을 잘 들어주는 것을 넘어서, 그 사람의 내면 깊숙이 자리한 감정과 생각까지 이해하는 깊이 있는 공감력을 말합니다. 여러분은 종종 타인의 미세한 표정 변화나 목소리의 떨림에서도 그들의 진짜 감정을 읽어내죠. 이러한 능력은 여러분을 탁월한 상담가나 치료사로 만들어줄 수 있습니다. 또한, 여러분은 갈등 상황에서 각 당사자의 입장을 모두 이해하고 중재할 수 있는 뛰어난 능력을 가지고 있어, 관계의 연금술사라 불릴 만합니다. 이 특별한 재능으로 여러분은 주변 사람들의 정서적 안식처가 되어주곤 합니다. 하지만 이런 깊은 이해와 공감은 때로 여러분을 지치게 할 수도 있다는 점을 기억하세요.<br><br>
+
+<b>난점 - 감정의 홍수 속 나를 지키는 법</b><br>
+여러분의 뛰어난 공감 능력은 때로 양날의 검이 될 수 있습니다. 타인의 감정을 깊이 이해하고 받아들이다 보면, 그들의 고통이나 슬픔을 마치 자신의 것처럼 느껴 정서적 소진을 경험할 수 있습니다. 이는 번아웃이나 공감 피로로 이어질 수 있죠. 또한, 다른 사람의 감정에 너무 집중한 나머지 자신의 감정과 욕구를 무시하거나 억누르는 경향이 있을 수 있습니다. 이는 장기적으로 자아 정체성의 혼란을 가져올 수 있어요. 갈등 상황에서 모든 사람을 만족시키려다 정작 자신의 의견을 제대로 표현하지 못하는 경우도 있겠죠. 때로는 타인의 감정을 '읽는' 능력 때문에 실제로 대화하지 않고 섣부른 판단을 내리는 오류를 범할 수도 있습니다. 이런 난점들을 인식하고 극복하는 것이 여러분의 성장에 중요한 과제가 될 것입니다.<br><br>
+
+<b>강화 방법 - 균형 잡힌 공감, 건강한 경계 설정</b><br>
+여러분의 뛰어난 공감 능력을 더욱 강화하면서도 자신을 지키는 방법을 배우는 것이 중요합니다. 먼저, 자기 돌봄의 시간을 반드시 가지세요. 명상, 요가, 산책 등을 통해 자신의 내면과 연결되는 시간은 정서적 균형을 유지하는 데 도움이 됩니다. 또한, 건강한 경계선 설정을 연습해보세요. '아니오'라고 말하는 것도 중요한 기술입니다. 타인의 감정을 이해하면서도 그것을 모두 짊어질 필요는 없다는 것을 기억하세요. 공감과 객관성의 균형을 잡는 연습도 필요합니다. 상황을 한 발 물러서서 바라보는 습관을 들이면, 정서적 소진을 예방할 수 있습니다. 전문적인 상담 기술을 배우는 것도 좋은 방법이 될 수 있어요. 이는 여러분의 공감 능력을 더욱 체계적이고 효과적으로 활용할 수 있게 해줄 것입니다. 마지막으로, 자신의 감정도 소중히 여기고 표현하는 연습을 하세요. 여러분의 감정도 타인의 감정만큼 중요하답니다.<br><br>
+
+<b>성장 이후의 모습 - 치유와 연결의 대가</b><br>
+성장을 거듭한 여러분은 진정한 '감정의 연금술사'로 거듭나게 됩니다. 뛰어난 공감 능력을 바탕으로 타인의 마음을 깊이 이해하면서도, 자신의 감정과 욕구도 균형 있게 돌보는 법을 터득하게 되죠. 이제 여러분은 다른 사람들의 감정에 휩쓸리지 않으면서도 그들을 효과적으로 지원할 수 있는 능력을 갖추게 됩니다. 이러한 능력은 상담, 심리치료, 코칭 등의 분야에서 탁월한 전문성으로 발휘될 수 있습니다. 또한, 조직 내에서는 팀원들 간의 갈등을 해소하고 협력을 이끌어내는 중재자 역할을 훌륭히 수행할 수 있게 되죠. 더 나아가 사회적 차원에서는 다양한 집단 간의 이해와 화합을 도모하는 평화의 메신저로 활약할 수 있습니다. 여러분의 섬세한 공감 능력은 이제 개인과 사회를 치유하고 연결하는 강력한 도구가 되어, 세상을 더 따뜻하고 이해가 넘치는 곳으로 만드는 데 기여하게 될 것입니다.`,
+
+B: `<b>일상의 단면 - 이상을 현실로 만드는 꿈의 건축가</b><br>
+여러분의 하루는 더 나은 세상을 향한 끊임없는 여정과도 같습니다. 아침에 눈을 뜨면 가장 먼저 세상을 변화시킬 아이디어를 메모하고, 출근길에는 환경 보호를 위해 자전거를 탑니다. 직장에서는 단순히 업무를 수행하는 것을 넘어, 회사의 사회적 책임을 높이기 위한 제안을 준비하죠. 점심 시간에는 동료들과 함께 지역 사회 봉사 활동을 계획합니다. 퇴근 후에는 시민 단체 모임에 참석해 사회 문제에 대한 해결책을 토론하고, 집으로 돌아와서는 지속 가능한 생활 방식을 실천합니다. 잠들기 전, 오늘 하루 동안 세상에 기여한 것들을 되새기며 내일은 더 큰 변화를 만들겠다고 다짐합니다. 여러분의 일상은 이처럼 이상을 현실로 만들어가는 작은 실천들로 가득 차 있습니다.<br><br>
+
+<b>유형 특성 - 비전의 선구자, 가치의 수호자</b><br>
+여러분은 마치 미래에서 온 사람처럼 더 나은 세상에 대한 선명한 비전을 가지고 있습니다. 이는 단순한 공상이 아닌, 현실에서 구현하고자 하는 구체적인 청사진이죠. 여러분은 often 현재의 문제점을 예리하게 포착하고, 그것을 해결할 혁신적인 아이디어를 제시합니다. 이러한 능력은 여러분을 사회 혁신가나 변화의 리더로 만들어줄 수 있습니다. 또한, 여러분은 강한 도덕적 신념과 가치관을 가지고 있어, 불의에 대해 목소리를 내는 것을 주저하지 않습니다. 이 특별한 용기와 신념은 주변 사람들에게 영감을 주고 변화의 물결을 일으키곤 합니다. 여러분의 이상주의는 때로 비현실적으로 보일 수 있지만, 그것이 바로 세상을 더 나은 곳으로 만드는 원동력이 된다는 점을 기억하세요.<br><br>
+
+<b>난점 - 이상과 현실 사이의 균형 잡기</b><br>
+여러분의 강한 이상주의는 때로 현실과의 괴리를 만들어내기도 합니다. 높은 기준과 완벽주의적 성향으로 인해 자신과 타인에 대해 지나치게 엄격해질 수 있죠. 이는 좌절감과 실망감으로 이어질 수 있습니다. 또한, 세상을 변화시키려는 열정이 너무 강해 개인적인 삶과 관계를 소홀히 할 위험도 있어요. 때로는 자신의 이상을 타인에게 강요하거나, 다른 사람들이 변화의 속도를 따라오지 못할 때 인내심을 잃을 수 있습니다. 현실의 제약과 한계를 인정하지 않고 무리하게 밀어붙이다 번아웃에 빠질 수도 있겠죠. 또한, 자신의 노력이 즉각적인 변화로 이어지지 않을 때 깊은 좌절감을 느낄 수 있습니다. 이런 난점들을 인식하고 극복하는 것이 여러분의 이상을 실현하는 데 중요한 과제가 될 것입니다.<br><br>
+
+<b>강화 방법 - 현실적 이상주의자로의 성장</b><br>
+여러분의 강한 이상과 비전을 유지하면서도 현실적인 접근을 배우는 것이 중요합니다. 먼저, 점진적 변화의 가치를 인정하세요. 큰 변화도 작은 걸음부터 시작된다는 것을 기억하세요. 단기, 중기, 장기 목표를 설정하여 단계적으로 접근하는 방법을 익히는 것도 좋습니다. 또한, 다양성을 인정하고 존중하는 태도를 기르세요. 모든 사람이 같은 속도로 변화할 수 없다는 것을 이해하고, 타인의 관점도 경청해보세요. 자기 관리 능력을 키우는 것도 중요합니다. 명상이나 마음챙김 연습을 통해 현재에 집중하는 법을 배우고, 스트레스 관리 기술을 익히세요. 네트워킹과 협력의 중요성도 기억하세요. 뜻을 같이하는 사람들과 연대하면 더 큰 변화를 만들어낼 수 있습니다. 마지막으로, 자신의 노력을 인정하고 작은 성과에도 기뻐할 줄 아는 태도를 가지세요. 완벽을 추구하기보다는 진보에 의미를 두는 것이 중요합니다.<br><br>
+
+<b>성장 이후의 모습 - 변화의 리더, 영감의 원천</b><br>
+성장을 거듭한 여러분은 이상과 현실을 조화롭게 아우르는 '현실적 이상주의자'로 거듭나게 됩니다. 높은 이상과 가치를 유지하면서도 현실적인 제약을 이해하고 그 안에서 최선의 변화를 이끌어내는 능력을 갖추게 되죠. 이제 여러분은 사회 혁신의 선두에 서서 실질적이고 지속 가능한 변화를 만들어내는 리더가 됩니다. 비영리 단체나 사회적 기업에서 중요한 역할을 맡거나, 정책 입안자로서 제도적 변화를 이끌어낼 수 있습니다. 또한, 교육자로서 다음 세대에게 더 나은 세상을 만들 수 있다는 희망과 방법을 전달할 수 있죠. 여러분의 비전과 열정은 주변 사람들에게 강한 영감을 주어 그들 또한 변화의 주체가 되도록 만듭니다. 때로는 좌절과 어려움을 겪더라도, 그것을 극복하고 계속해서 전진하는 여러분의 모습 자체가 많은 이들에게 희망이 됩니다. 결과적으로 여러분은 개인의 성장을 넘어 사회 전체를 더 나은 방향으로 이끄는 변화의 촉매제 역할을 하게 될 것입니다.`,
+
+C: `<b>일상의 단면 - 내면의 우주를 탐험하는 영혼의 고고학자</b><br>
+여러분의 하루는 끊임없는 자아 탐구의 여정과도 같습니다. 아침에 눈을 뜨면 꿈 일기를 쓰며 무의식의 메시지를 해석하고, 명상으로 하루를 시작합니다. 출근길에는 철학 팟캐스트를 들으며 삶의 본질에 대해 고민하죠. 직장에서도 업무 중 문득 떠오르는 깊은 통찰을 메모하고, 동료들의 행동 속에서 인간 본성의 비밀을 읽어내려 노력합니다. 점심 시간에는 혼자 산책하며 자연과 교감하고 내면의 소리에 귀 기울입니다. 퇴근 후에는 심리학 강의를 듣거나 철학 독서 모임에 참석해 타인과 깊이 있는 대화를 나눕니다. 잠들기 전, 하루 동안의 경험과 감정을 돌아보며 자아성찰 일기를 씁니다. 여러분의 일상은 이처럼 끊임없는 내적 탐구와 성장의 순간들로 가득 차 있습니다.<br><br>
+
+<b>유형 특성 - 통찰의 현자, 영혼의 탐험가</b><br>
+여러분은 마치 내면에 무한한 우주를 품고 있는 것처럼 깊은 사고와 풍부한 내적 세계를 가지고 있습니다. 이는 단순한 상상이 아닌, 인간 존재의 본질과 삶의 의미를 끊임없이 탐구하는 여정이죠. 여러분은 often 일상적인 경험 속에서도 깊은 의미와 상징을 발견하고, 이를 통해 자신과 세상을 이해하려 노력합니다. 이러한 능력은 여러분을 탁월한 작가, 예술가, 혹은 심리 상담가로 만들어줄 수 있습니다. 또한, 여러분은 직관적 통찰력이 뛰어나 복잡한 문제의 핵심을 꿰뚫어 보는 재능이 있습니다. 이 특별한 재능은 주변 사람들에게 새로운 관점과 지혜를 제공하곤 합니다. 여러분의 깊이 있는 사고는 때로 현실과 동떨어진 것처럼 보일 수 있지만, 그것이 바로 인간 이해의 지평을 넓히는 원동력이 된다는 점을 기억하세요.<br><br>
+
+<b>난점 - 현실과 이상 사이의 균형 잡기</b><br>
+여러분의 깊은 내면 탐구는 때로 현실과의 괴리를 만들어내기도 합니다. 지나친 자아성찰로 인해 실제 행동으로 옮기는 것을 주저하거나 결정을 미루는 경향이 있을 수 있죠. 이는 실질적인 삶의 진전을 방해할 수 있습니다. 또한, 내면 세계에 너무 몰입한 나머지 외부 현실과 사회적 관계를 소홀히 할 위험도 있어요. 때로는 자신의 깊은 생각과 느낌을 타인과 공유하는 것을 어려워하여 소통의 벽을 만들 수 있습니다. 완벽한 이해와 해답을 찾으려는 강박으로 인해 실제적인 삶의 경험을 회피할 수도 있겠죠. 또한, 자신의 내면 탐구가 즉각적인 변화나 해답으로 이어지지 않을 때 좌절감을 느낄 수 있습니다. 이런 난점들을 인식하고 극복하는 것이 여러분의 내적 지혜를 현실에서 구현하는 데 중요한 과제가 될 것입니다.<br><br>
+
+<b>강화 방법 - 내면과 외면의 조화로운 성장</b><br>
+여러분의 깊은 내면 탐구를 유지하면서도 외부 세계와 균형을 이루는 법을 배우는 것이 중요합니다. 먼저, 생각을 행동으로 옮기는 습관을 기르세요. 작은 실천부터 시작해 점진적으로 내적 통찰을 현실에 적용해보세요. 또한, 다른 사람들과 여러분의 생각과 느낌을 공유하는 연습을 하세요. 글쓰기나 예술 활동을 통해 내면의 세계를 표현하는 것도 좋은 방법입니다. 명상이나 마음챙김 연습을 통해 현재 순간에 집중하는 법을 배우고, 동시에 실제 세계 경험의 중요성을 인식하세요. 다양한 경험을 쌓는 것이 더 풍부한 내적 성찰로 이어질 수 있다는 점을 기억하세요. 또한, 비슷한 성향의 사람들과 교류하며 서로의 통찰을 나누고 성장할 수 있는 커뮤니티를 만들어보세요. 마지막으로, 자신의 내면 탐구가 가치 있는 과정이라는 것을 인정하고, 즉각적인 결과나 해답을 기대하기보다는 여정 자체를 즐기는 태도를 가지세요.<br><br>
+
+<b>성장 이후의 모습 - 지혜의 전달자, 영혼의 안내자</b><br>
+성장을 거듭한 여러분은 내면의 지혜와 외부 현실을 조화롭게 연결하는 '실천적 현자'로 거듭나게 됩니다. 깊은 자아 성찰을 통해 얻은 통찰력을 실제 삶에 적용하고, 이를 통해 자신과 타인의 성장을 이끄는 능력을 갖추게 되죠. 이제 여러분은 심리 상담가, 인생 코치, 또는 영적 지도자로서 많은 이들의 내면 성장을 돕는 역할을 할 수 있습니다. 작가나 예술가로서 자신의 깊은 통찰을 창조적으로 표현하여 많은 이들에게 영감을 줄 수도 있죠. 교육자로서 학생들에게 삶의 깊은 의미와 자아 발견의 중요성을 가르칠 수 있습니다. 여러분의 존재 자체가 주변 사람들에게 영감과 위안이 되어, 그들 또한 내면의 여정을 시작하도록 이끌게 됩니다. 때로는 고독과 깊은 사색의 시간을 가지면서도, 그것을 통해 얻은 지혜를 세상과 나누는 균형 잡힌 삶을 살게 될 것입니다. 결과적으로 여러분은 개인의 성장을 넘어 집단 의식의 진화에 기여하는 정신적 선구자 역할을 하게 될 것입니다.`,
+
+
+  };
+
+
+let currentQuestion = 0;
+let scores = {A: 0, B: 0, C: 0};
+
+function startTest() {
+    document.getElementById('start-container').style.display = 'none';
+    document.getElementById('question-container').style.display = 'block';
+    showQuestion();
+}
+
+function showQuestion() {
+    if (currentQuestion < questions.length) {
+        document.getElementById('question-number').textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
+        document.getElementById('question-text').textContent = questions[currentQuestion].question;
+        const buttons = document.querySelectorAll('#question-container button');
+        for (let i = 0; i < 3; i++) {
+            buttons[i].textContent = questions[currentQuestion].answers[i];
+        }
+    } else {
+        showResult();
+    }
+}
+
+function answerQuestion(answer) {
+    if (answer === 0) scores.A++;
+    else if (answer === 1) scores.B++;
+    else scores.C++;
+    
+    currentQuestion++;
+    showQuestion();
+}
+
+function showResult() {
+    document.getElementById('question-container').style.display = 'none';
+    document.getElementById('result-container').style.display = 'block';
+    
+    const type = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    document.getElementById('result-type').textContent = types[type];
+    document.getElementById('result-description').innerHTML = typeDescriptions[type];
+}
+
+function restartTest() {
+    currentQuestion = 0;
+    scores = {A: 0, B: 0, C: 0};
+    document.getElementById('result-container').style.display = 'none';
+    document.getElementById('start-container').style.display = 'block';
+}
+
+function shareResult() {
+    const type = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    const shareUrl = `${window.location.href.split('#')[0]}#result=${type}`;
+
+    const textArea = document.createElement("textarea");
+    textArea.value = shareUrl;
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        document.getElementById('share-message').textContent = "결과 링크가 클립보드에 복사되었습니다. 원하는 곳에 붙여넣기 하세요!";
+    } catch (err) {
+        document.getElementById('share-message').textContent = "복사에 실패했습니다. 수동으로 복사해주세요: " + shareUrl;
+    }
+
+    document.body.removeChild(textArea);
+    document.getElementById('share-message').style.display = 'block';
+
+    setTimeout(function() {
+        document.getElementById('share-message').style.display = 'none';
+    }, 3000);
+}
+
+function showResultFromUrl(type) {
+    document.getElementById('start-container').style.display = 'none';
+    document.getElementById('result-container').style.display = 'block';
+    document.getElementById('result-type').textContent = types[type];
+    document.getElementById('result-description').innerHTML = typeDescriptions[type];
+}
+
+window.onload = function() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#result=')) {
+        const result = hash.split('=')[1];
+        if (types[result]) {
+            showResultFromUrl(result);
+        }
+    }
+}
+</script>
+</body> </html>
